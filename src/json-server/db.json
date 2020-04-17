@@ -1,0 +1,55 @@
+{
+  "posts": [],
+  "comments": [],
+  "users": [
+    {
+      "id": 1,
+      "username": "pikachu",
+      "password": "password",
+      "role": "admin",
+      "fullName": "pikachu cho"
+    },
+    {
+      "username": "naruto",
+      "password": "password",
+      "role": "user",
+      "fullName": "naruto komaru",
+      "id": 2
+    },
+    {
+      "username": "shincan",
+      "password": "password",
+      "role": "user",
+      "fullName": "kaiba sinchan",
+      "id": 3
+    },
+    {
+      "username": "asd",
+      "password": "asd",
+      "fullName": "asd",
+      "role": "asd",
+      "id": 4
+    },
+    {
+      "username": "asd",
+      "password": "asd",
+      "fullName": "asd",
+      "role": "asd",
+      "id": 5
+    },
+    {
+      "username": "ewq",
+      "password": "ewq",
+      "fullName": "ewq",
+      "role": "ewq",
+      "id": 6
+    },
+    {
+      "username": "ewqq",
+      "password": "ewq",
+      "fullName": "ewq",
+      "role": "ewq",
+      "id": 7
+    }
+  ]
+}

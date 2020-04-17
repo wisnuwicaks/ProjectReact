@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 class InputScreen extends React.Component {
   state = {
@@ -7,12 +8,12 @@ class InputScreen extends React.Component {
     textbox: "",
   };
 
+  inputHandler = (event, field) => {
+    this.setState({ [field]: event.target.value });
+  };
+
   render() {
     const { username, email, textbox } = this.state;
-
-    const inputHandler = (event, field) => {
-      this.setState({ [field]: event.target.value });
-    };
 
     return (
       <div>
@@ -20,20 +21,23 @@ class InputScreen extends React.Component {
         <h3>Username: {username} </h3>
         <h3>Email: {email} </h3>
         <input
-          onChange={(e) => inputHandler(e, "username")}
-          // onChange={inputHandler}
+          onChange={(e) => this.inputHandler(e, "username")}
+          // onChange={this.inputHandler}
           type="text"
           placeholder="Username"
         />
         <br />
         <input
-          onChange={(e) => inputHandler(e, "email")}
+          onChange={(e) => this.inputHandler(e, "email")}
           type="text"
           placeholder="Email"
         />
+        <Link to={"/profile" + username}>
+          <input type="button" className="btn btn-primary" value="Inout"/>
+        </Link>
         <br />
         <textarea
-          onChange={(e) => inputHandler(e, "textbox")}
+          onChange={(e) => this.inputHandler(e, "textbox")}
           name=""
           id=""
           cols="30"
