@@ -14,7 +14,7 @@ class LoginScreen extends React.Component{
       };
 
       componentDidMount(){
-        alert("didMount")
+   
         console.log(this.users)
         this.getDataHandler()
       }
@@ -65,12 +65,12 @@ class LoginScreen extends React.Component{
 
         
           if(isLoggedIn){
-            alert("masul")
+
             return <Redirect to={`/profile/${currentUsername}`}/>
           }
           else{
             return (
-              <center className="container">
+              <center className="container mt-5">
                   <div className="card p-5" style={{ width: "400px" }}>
                   <h4>Login</h4>
                   <input

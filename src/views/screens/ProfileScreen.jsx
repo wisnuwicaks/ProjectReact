@@ -75,12 +75,15 @@ componentDidMount(){
     const { currentUser} = this.state
     if(currentUser.length >0){
       return (
-        <div>
+        
+        <center className="container mt-5">
+          <div className="card p-2 " style={{ width: "400px" }}>
           <h1>Profile</h1>
           <h2>Welcome, {currentUser[0].username} </h2>
-          <h4>Full Name : {currentUser[0].fullName}</h4>
-          <h4>Role : {currentUser[0].role}</h4>
+          <h2>Full Name : {currentUser[0].fullName}</h2>
+          <h2>Role : {currentUser[0].role}</h2>
           </div>
+        </center>
       );
     }
     else{

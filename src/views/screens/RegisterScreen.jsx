@@ -17,7 +17,6 @@ class RegisterScreen extends React.Component {
   };
 
   componentDidMount(){
-    alert("didMount")
     console.log(this.users)
     this.getDataHandler()
   }
@@ -136,9 +135,9 @@ class RegisterScreen extends React.Component {
       return (
         <div>
          
-          <center className="container">
+          <center className="container mt-5">
             <div className="card p-5" style={{ width: "400px" }}>
-              <h4>Register</h4>
+            <h4>Register </h4>
               <input
                 value={username}
                 className="form-control mt-2"

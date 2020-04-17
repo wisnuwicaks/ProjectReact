@@ -50,6 +50,13 @@
       "fullName": "ewq",
       "role": "ewq",
       "id": 7
+    },
+    {
+      "username": "wisnu",
+      "password": "www",
+      "fullName": "wisnu wicak",
+      "role": "striker",
+      "id": 8
     }
   ]
 }

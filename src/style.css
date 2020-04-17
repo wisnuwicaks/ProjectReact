@@ -1,0 +1,16 @@
+.navbarku{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    border: 2px solid black;
+    font-size: 30px;
+
+}
+.border-kuning{
+    border: yellow solid 2px;
+}
+
+.profileku{
+    background-color: chartreuse;
+}

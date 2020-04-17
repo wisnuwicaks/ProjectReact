@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch,withRouter, Redirect } from "react-router-dom";
 
 import NewScreen from "./views/screens/NewScreen";
@@ -21,6 +21,8 @@ import RegisterScreen from './views/screens/RegisterScreen';
 
 function App() {
   // State
+  const [UserActive,setUserActive] = useState('')
+
   return (
     // <div className="App">
     //   <h1>Hello World!</h1>
@@ -31,7 +33,7 @@ function App() {
     // </div>
     <>
       {/* <LifecycleScreen /> */}
-      <Navbar />
+      <Navbar logedIn={UserActive}/>
       <Switch>
         {/* <Route exact path="/" component={HomeScreen} /> */}
         <Route exact path="/" component={RegisterScreen} />
