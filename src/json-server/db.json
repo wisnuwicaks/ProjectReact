@@ -3,67 +3,39 @@
   "comments": [],
   "users": [
     {
-      "id": 1,
-      "username": "pikachu",
-      "password": "password",
-      "role": "admin",
-      "fullName": "pikachu cho"
-    },
-    {
-      "username": "naruto",
+      "username": "denver",
       "password": "password",
       "role": "user",
-      "fullName": "naruto komaru",
+      "fullName": "Denver",
+      "id": 1
+    },
+    {
+      "username": "sergio",
+      "password": "password",
+      "role": "admin",
+      "fullName": "Sergio",
       "id": 2
     },
     {
-      "username": "shincan",
+      "username": "nairobi",
       "password": "password",
       "role": "user",
-      "fullName": "kaiba sinchan",
+      "fullName": "Nairobi",
       "id": 3
     },
     {
-      "username": "asd",
-      "password": "asd",
-      "fullName": "asd",
-      "role": "asd",
-      "id": 4
-    },
-    {
-      "username": "asd",
-      "password": "asd",
-      "fullName": "asd",
-      "role": "asd",
-      "id": 5
-    },
-    {
-      "username": "ewq",
-      "password": "ewq",
-      "fullName": "ewq",
-      "role": "ewq",
-      "id": 6
-    },
-    {
-      "username": "ewqq",
-      "password": "ewq",
-      "fullName": "ewq",
-      "role": "ewq",
-      "id": 7
-    },
-    {
-      "username": "wisnu",
-      "password": "www",
-      "fullName": "wisnu wicak",
-      "role": "striker",
-      "id": 8
-    },
-    {
-      "username": "Arturo",
+      "username": "arturo",
       "password": "wwwww",
       "fullName": "Arturo",
       "role": "user",
-      "id": 9
+      "id": 4
+    },
+    {
+      "username": "Wisnu",
+      "password": "wwwww",
+      "fullName": "Wisnu Wicaksono",
+      "role": "creator",
+      "id": 5
     }
   ]
 }

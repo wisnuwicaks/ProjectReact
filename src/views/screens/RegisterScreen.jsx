@@ -133,10 +133,10 @@ class RegisterScreen extends React.Component {
 
   
       return (
-        <div className="border-hitam background-img size-body">
+        <div className="size-body background-img">
          
-          <center className="container">
-            <div className="card p-5 mt-5 card-opacity border-hitam">
+          <center className="p-5">
+            <div className="card p-5 card-opacity border-hitam">
             <h4>Register </h4>
               <input
                 value={username}

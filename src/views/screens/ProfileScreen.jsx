@@ -75,8 +75,8 @@ componentDidMount(){
     const { currentUser} = this.state
     if(currentUser.length >0){
       return (
-        <div className="background-img1 size-body border-hitam">
-        <center className="container mt-5 ">
+        <div className="background-img1 size-body">
+        <center className="container p-5">
           <div className="card p-2 card-opacity border-hitam" >
           <h1>Profile</h1>
           <h2>Welcome, {currentUser[0].username} </h2>

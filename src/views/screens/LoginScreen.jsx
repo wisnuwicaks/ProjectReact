@@ -74,8 +74,8 @@ class LoginScreen extends React.Component{
         
           else{
             return (
-              <div className="border-hitam background-img size-body">
-              <center className="container mt-5">
+              <div className=" background-img size-body p-5">
+              <center className="container">
                   <div className="card p-5 card-opacity">
                   <h4>Login </h4>
                   <input
