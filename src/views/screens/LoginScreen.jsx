@@ -34,7 +34,7 @@ class LoginScreen extends React.Component{
       };
 
       loginHandler = () => {
-        const { loginUsername, loginPassword, users } = this.state;
+        const { loginUsername, loginPassword, users,currentUsername } = this.state;
         for (let i = 0; i < users.length; i++) {
           if (
             users[i].username == loginUsername &&
@@ -46,6 +46,8 @@ class LoginScreen extends React.Component{
               loginUsername: "",
               loginPassword: "",
             });
+            console.log(this.state.currentUsername)
+          
             break;
           }
     
@@ -53,6 +55,7 @@ class LoginScreen extends React.Component{
             alert("User tidak ada atau password salah");
           }
         }
+        console.log(currentUsername)
       };
 
     render(){
@@ -65,14 +68,16 @@ class LoginScreen extends React.Component{
 
         
           if(isLoggedIn){
-
+            this.props.callback(currentUsername)
             return <Redirect to={`/profile/${currentUsername}`}/>
           }
+        
           else{
             return (
+              <div className="border-hitam background-img size-body">
               <center className="container mt-5">
-                  <div className="card p-5" style={{ width: "400px" }}>
-                  <h4>Login</h4>
+                  <div className="card p-5 card-opacity">
+                  <h4>Login </h4>
                   <input
                     value={loginUsername}
                     className="form-control mt-2"
@@ -97,6 +102,7 @@ class LoginScreen extends React.Component{
                 
                   </div>
               </center>
+              </div>
           )
           }
         

@@ -75,23 +75,32 @@ componentDidMount(){
     const { currentUser} = this.state
     if(currentUser.length >0){
       return (
-        
-        <center className="container mt-5">
-          <div className="card p-2 " style={{ width: "400px" }}>
+        <div className="background-img1 size-body border-hitam">
+        <center className="container mt-5 ">
+          <div className="card p-2 card-opacity border-hitam" >
           <h1>Profile</h1>
           <h2>Welcome, {currentUser[0].username} </h2>
           <h2>Full Name : {currentUser[0].fullName}</h2>
           <h2>Role : {currentUser[0].role}</h2>
           </div>
         </center>
+        </div>
       );
+    }
+    else if(this.props.match.params.user=="No Active User"){
+      return (
+        <div className="background-img1 size-body">
+        <center className="pt-5">
+        <h1>No Active User</h1>
+        </center>
+        </div>
+      )
     }
     else{
       return (
-        <div>
-        <h1>Loading...</h1>
-        
-      </div>
+        <div className="background-img1 size-body">
+          <center><h1> Loading...</h1></center>
+        </div>
       )
     }
     

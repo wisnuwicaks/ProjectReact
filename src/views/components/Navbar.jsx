@@ -8,11 +8,12 @@ class Navbar extends React.Component {
 
         
       <div
-        className="navbarku"
-        
+        className="navbarku border-hitam bg-light"
       >
-        <Link to="/RegisterScreen">Register {this.props.logedIn}</Link>
+        <Link to="/RegisterScreen">Register</Link>
         <Link to="/LoginScreen">Login</Link>
+        <Link to={`/profile/${this.props.logedIn}`}>Profile ({this.props.logedIn})</Link>
+        
       </div>
         
         

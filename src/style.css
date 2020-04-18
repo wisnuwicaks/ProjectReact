@@ -3,12 +3,34 @@
     justify-content: space-around;
     align-items: center;
     height: 80px;
-    border: 2px solid black;
     font-size: 30px;
+    background-image: url(https://fanart.tv/fanart/tv/327417/hdtvlogo/-5a68a84a34261.png);
+   
+}
+.card-opacity{
+    opacity: 0.8;
+    width: 400px
+}
+.background-img{
+    background-image: url(https://themepack.me/i/c/749x468/media/g/2202/la-casa-de-papel-theme-ov1.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+}
+.background-img1{
+    background-image: url(https://cdn.dribbble.com/users/2198898/screenshots/10967403/wallpaper2.2w_copy_4x.jpg);
+    background-size: 100%;
+    background-position: center;
+}
 
+.size-body{
+    height: 730px;
 }
 .border-kuning{
     border: yellow solid 2px;
+}
+
+.border-hitam{
+    border:  black solid 2px;
 }
 
 .profileku{

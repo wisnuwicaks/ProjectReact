@@ -57,6 +57,13 @@
       "fullName": "wisnu wicak",
       "role": "striker",
       "id": 8
+    },
+    {
+      "username": "Arturo",
+      "password": "wwwww",
+      "fullName": "Arturo",
+      "role": "user",
+      "id": 9
     }
   ]
 }

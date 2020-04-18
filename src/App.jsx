@@ -21,8 +21,13 @@ import RegisterScreen from './views/screens/RegisterScreen';
 
 function App() {
   // State
-  const [UserActive,setUserActive] = useState('')
+  const [UserActive,setUserActive] = useState('No Active User')
 
+
+  const parentCallBack = (param) => {
+    setUserActive(param)
+  }
+  // alert(UserActive)
   return (
     // <div className="App">
     //   <h1>Hello World!</h1>
@@ -33,13 +38,19 @@ function App() {
     // </div>
     <>
       {/* <LifecycleScreen /> */}
+    
       <Navbar logedIn={UserActive}/>
       <Switch>
         {/* <Route exact path="/" component={HomeScreen} /> */}
+        
         <Route exact path="/" component={RegisterScreen} />
+       
         <Route exact path="/RegisterScreen" component={RegisterScreen} />
-        <Route exact path="/LoginScreen" component={LoginScreen} />
+        {/* <Route exact path="/LoginScreen" component={LoginScreen} /> */}
         <Route exact path="/profile/:user" component={ProfileScreen} />
+        <Route render={(props) => <LoginScreen {...props} callback = {parentCallBack} />}/>
+        
+     
         <Route path="*" component={PageNotFound} />
       </Switch>
     </>
