@@ -3,37 +3,55 @@ import Axios from 'axios'
 import {API_URL} from '../../constans/API'
 
 class ProfileScreen extends React.Component {
-  state={
-    currentUser:[]
+
+  state = {
+    id: 0,
+    username: "",
+    role: "",
+    fullName: "",
+  };
+
+  componentDidMount() {
+    let userId = this.props.match.params.userId;
+
+    Axios.get(`${API_URL}/users/${userId}`)
+      .then((res) => {
+        console.log(res);
+
+        const { id, username, role, fullName } = res.data;
+        this.setState({
+          id,
+          username,
+          role,
+          fullName,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
-  // getDataHandler = () =>{
-  //   Axios.get("http://localhost:3001/users")
-  //   .then((res)=>{
-  //     console.log(res.data)
-  //     this.setState({usersList:res.data})
-  //   })
-  //   .catch((err)=>{console.log(err)})
-  // }
+//   state={
+//     currentUser:[]
+//   }
 
 
-  getDataHandler = () =>{
-    const {currentUser}=this.state
-     Axios.get(`${API_URL}/users`,{
-       params:{
-         username:this.props.match.params.user
-       }
-     })
-     .then((res)=>{
-       const {data} = res
-       this.setState({currentUser:[...data]})
-     }
-     )
-     .catch((err)=>{console.log(err)})
-   }
-componentDidMount(){
- this.getDataHandler()
-}
+//   getDataHandler = () =>{
+//     const {currentUser}=this.state
+//      Axios.get(`${API_URL}/users`,{
+//        params:{
+//          username:this.props.match.params.user
+//        }
+//      })
+//      .then((res)=>{
+//        const {data} = res
+//        this.setState({currentUser:[...data]})
+//      }
+//      )
+//      .catch((err)=>{console.log(err)})
+//    }
+// componentDidMount(){
+//  this.getDataHandler()
+// }
 
 // componentWillMount(){
 //   this.getDataHandler()
@@ -72,16 +90,51 @@ componentDidMount(){
   // }
   render() {
     // alert('ini render')
-    const { currentUser} = this.state
-    if(currentUser.length >0){
+    // const { currentUser} = this.state
+    
+    // if(currentUser.length >0){
+    //   return (
+    //     <div className="background-img1 size-body">
+    //     <center className="container p-5">
+    //       <div className="card p-2 card-opacity border-hitam" >
+    //       <h1>Profile</h1>
+    //       <h2>Welcome, {currentUser[0].username} </h2>
+    //       <h2>Full Name : {currentUser[0].fullName}</h2>
+    //       <h2>Role : {currentUser[0].role}</h2>
+    //       </div>
+    //     </center>
+    //     </div>
+    //   );
+    // }
+    // else if(this.props.match.params.user=="No Active User"){
+    //   return (
+    //     <div className="background-img1 size-body">
+    //     <center className="pt-5">
+    //     <h1>No Active User</h1>
+    //     </center>
+    //     </div>
+    //   )
+    // }
+    // else{
+    //   return (
+    //     <div className="background-img1 size-body">
+    //       <center><h1> Loading...</h1></center>
+    //     </div>
+    //   )
+    // }
+    
+
+
+    const { id,username,role,fullName} = this.state
+    if(id >0){
       return (
         <div className="background-img1 size-body">
         <center className="container p-5">
           <div className="card p-2 card-opacity border-hitam" >
           <h1>Profile</h1>
-          <h2>Welcome, {currentUser[0].username} </h2>
-          <h2>Full Name : {currentUser[0].fullName}</h2>
-          <h2>Role : {currentUser[0].role}</h2>
+          <h2>Welcome, {username} </h2>
+          <h2>Full Name : {fullName}</h2>
+          <h2>Role : {role}</h2>
           </div>
         </center>
         </div>

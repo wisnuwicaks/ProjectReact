@@ -1,126 +1,158 @@
-import React from "react";
-import {Link, Redirect} from "react-router-dom"
-import Axios from 'axios'
-import {API_URL} from '../../constans/API'
+// import React from "react";
+// import {Link, Redirect} from "react-router-dom"
+// import Axios from 'axios'
+// import {API_URL} from '../../constans/API'
 
-class RegisterScreen extends React.Component {
+// class RegisterScreen extends React.Component {
+//   state = {
+//     username: "",
+//     password: "",
+//     fullName:"",
+//     role:"",
+//     repPassword: "",
+//     isLoggedIn: false,
+//     users: [],
+//     loginUsername: "",
+//     loginPassword: "",
+//   };
+
+//   componentDidMount(){
+//     console.log(this.users)
+//     this.getDataHandler()
+//   }
+//   inputHandler = (e, field) => {
+//     this.setState({ [field]: e.target.value });
+//   };
+
+//   getDataHandler = () =>{
+//     const {users}=this.state
+//      Axios.get(`${API_URL}/users`)
+//      .then((res)=>{
+//        const {data} = res
+//        this.setState({users:[...users,...data]})
+//       }
+//      )
+//      .catch((err)=>{console.log(err)})
+//    }
+
+   
+//   postDataHandler=(username,password,fullName,role)=>{
+//     Axios.post(`${API_URL}/users`, {
+//       username: username,
+//       password: password,
+//       fullName: fullName,
+//       role: role,
+//     })
+//     .then((res)=>{
+//       console.log(res)
+//     })
+//     .catch((err)=>{
+//       console.log(err)
+//     })
+//   }
+
+//   registerHandler = () => {
+//     const { repPassword, password, username,role,fullName, users } = this.state;
+
+//     if (repPassword == password) {
+//        let cariIndexUsername = users.findIndex(val=>val.username==username)
+//         if(cariIndexUsername==-1){
+//         this.postDataHandler(username,password,fullName,role)
+//         let newData = {
+//           username,password,fullName,role
+//         };
+//         this.setState({
+//           users: [...users, newData],
+//           username: "",
+//           password: "",
+//           fullName:"",
+//           role :"",
+//           repPassword: "",
+//         });
+//         console.log(users);
+//         }else{
+//           alert("Maaf username sudah terpakai")
+//         }
+
+//     } else {
+//       alert("Password belum cocok");
+//     }
+//   };
+
+import React, { Component } from "react";
+import Axios from "axios";
+import {API_URL} from '../../constans/API'
+import { Button, Spinner } from "reactstrap";
+
+class RegisterScreen extends Component {
   state = {
     username: "",
     password: "",
-    fullName:"",
-    role:"",
     repPassword: "",
-    isLoggedIn: false,
-    users: [],
-    loginUsername: "",
-    loginPassword: "",
+    fullName: "",
+    isLoading: false,
   };
 
-  componentDidMount(){
-    console.log(this.users)
-    this.getDataHandler()
-  }
-  inputHandler = (e, field) => {
-    this.setState({ [field]: e.target.value });
+  inputHandler = (event, field) => {
+    const { value } = event.target;
+
+    this.setState({ [field]: value });
   };
-
-  getDataHandler = () =>{
-    const {users}=this.state
-     Axios.get(`${API_URL}/users`)
-     .then((res)=>{
-       const {data} = res
-       this.setState({users:[...users,...data]})
-      }
-     )
-     .catch((err)=>{console.log(err)})
-   }
-
-   
-  postDataHandler=(username,password,fullName,role)=>{
-    Axios.post(`${API_URL}/users`, {
-      username: username,
-      password: password,
-      fullName: fullName,
-      role: role,
-    })
-    .then((res)=>{
-      console.log(res)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
 
   registerHandler = () => {
-    const { repPassword, password, username,role,fullName, users } = this.state;
+    // 1. Satuin inputan menjadi 1 object -> untuk dikirim ke db.json
+    // 2. Check apakah username tersedia?
+    //   2.1 GET users dengan username = this.state.username
+    //    GET dengan query params { username: this.state.username }
+    //   2.2 Jika array kosong, berarti belum ada yg pakai username tsbt
+    //       username -> valid
+    //   2.3 Jika array ada isi, berarti username terpakai
+    //       username -> invalid
+    // 3. Jika case 2.2 lakukan POST request dengan body = step 1
+    // 4. Jika case 2.3 alert username invalid
 
-    if (repPassword == password) {
-       let cariIndexUsername = users.findIndex(val=>val.username==username)
-        if(cariIndexUsername==-1){
-        this.postDataHandler(username,password,fullName,role)
-        let newData = {
-          username,password,fullName,role
-        };
-        this.setState({
-          users: [...users, newData],
-          username: "",
-          password: "",
-          fullName:"",
-          role :"",
-          repPassword: "",
+    const { username, password, repPassword, fullName } = this.state;
+    let newUser = {
+      username,
+      fullName,
+      password,
+      role: "user",
+    };
+
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+      Axios.get(`${API_URL}/users`, {
+        params: {
+          username,
+        },
+      })
+        .then((res) => {
+          if (res.data.length == 0) {
+            // Username belum terpakai
+            // POST request here
+            Axios.post(`${API_URL}/users`, newUser)
+              .then((res) => {
+                alert("Akun anda telah terdaftar!");
+                this.setState({ isLoading: false });
+              })
+              .catch((err) => {
+                alert("Terjadi kesalahan di server, mon map");
+                this.setState({ isLoading: false });
+              });
+          } else {
+            // Username sudah terpakai
+            // alert here
+            alert("Username: " + username + " sudah terpakai");
+            this.setState({ isLoading: false });
+          }
+        })
+        .catch((err) => {
+          console.log("ERROR", err);
+          this.setState({ isLoading: false });
         });
-        console.log(users);
-        }else{
-          alert("Maaf username sudah terpakai")
-        }
-
-    } else {
-      alert("Password belum cocok");
-    }
+    }, 1500);
   };
 
-  renderUsers = () => {
-    const { users, activeEditIdx } = this.state;
-    return users.map((val, idx) => {
-      if (idx == activeEditIdx) {
-        return (
-          <tr>
-            <td>{idx + 1}</td>
-            {/* <td>{val.username}</td> */}
-            <td>
-              <input type="text" placeholder={val.username} />
-            </td>
-            <td>
-              <input
-                type="button"
-                value="Delete"
-                className="btn btn-danger"
-                onClick={() => this.deleteHandler(idx)}
-              />
-            </td>
-          </tr>
-        );
-      } else {
-        return (
-          <tr>
-            <td>{idx + 1}</td>
-            <td>{val.username}</td>
-            <td>
-              <Link to={"/profile/" + val.username}>
-              <input
-                type="button"
-                value="Edit"
-                className="btn btn-info"
-                // onClick={() => this.setState({ activeEditIdx: idx })}
-                
-              />
-              </Link>
-            </td>
-          </tr>
-        );
-      }
-    });
-  };
 
   render() {
     const {

@@ -47,7 +47,7 @@ function App() {
        
         <Route exact path="/RegisterScreen" component={RegisterScreen} />
         {/* <Route exact path="/LoginScreen" component={LoginScreen} /> */}
-        <Route exact path="/profile/:user" component={ProfileScreen} />
+        <Route exact path="/profile/:userId" component={ProfileScreen} />
         <Route render={(props) => <LoginScreen {...props} callback = {parentCallBack} />}/>
         
      
