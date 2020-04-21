@@ -140,19 +140,21 @@ class ProfileScreen extends React.Component {
         </div>
       );
     }
-    else if(this.props.match.params.user=="No Active User"){
+    // else if (this.props.match.params.user=="No Active User"){
+    //   return (
+    //     <div className="background-img1 size-body">
+    //     <center className="pt-5">
+    //     <h1>No Active User</h1>
+    //     </center>
+    //     </div>
+    //   )
+    // }
+    else{
       return (
         <div className="background-img1 size-body">
         <center className="pt-5">
         <h1>No Active User</h1>
         </center>
-        </div>
-      )
-    }
-    else{
-      return (
-        <div className="background-img1 size-body">
-          <center><h1> Loading...</h1></center>
         </div>
       )
     }
