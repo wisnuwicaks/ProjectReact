@@ -115,7 +115,7 @@ class LoginScreen extends React.Component{
           if(isLoggedIn){
             // this.props.callback(currentUsername)
             this.props.onChangeUsername(username)
-            this.props.onChangeId(loginProfile.id)
+            this.props.onChangeId(this.state.loginProfile.id)
             return <Redirect to={`/profile/${this.state.loginProfile.id}`}/>
 
           }
