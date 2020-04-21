@@ -8,6 +8,7 @@ import {
   todoInputHandler,
   usernameInputHandler,
   addTodoHandler,
+  idInputHandler,
 } from "../../redux/actions";
 
 class LoginScreen extends React.Component{
@@ -114,6 +115,7 @@ class LoginScreen extends React.Component{
           if(isLoggedIn){
             // this.props.callback(currentUsername)
             this.props.onChangeUsername(username)
+            this.props.onChangeId(loginProfile.id)
             return <Redirect to={`/profile/${this.state.loginProfile.id}`}/>
 
           }
@@ -159,6 +161,7 @@ class LoginScreen extends React.Component{
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    id :state.user,
   };
 };
 
@@ -167,6 +170,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   onChangeTodo: todoInputHandler,
   onChangeUsername: usernameInputHandler,
+  onChangeId: idInputHandler,
   onAddTodo: addTodoHandler,
 };
 

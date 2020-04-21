@@ -4,3 +4,10 @@ export const usernameInputHandler = (text) => {
     payload: text,
   };
 };
+
+export const idInputHandler = (text) => {
+  return {
+    type: "ON_CHANGE_ID",
+    payload: text,
+  };
+};
