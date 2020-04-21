@@ -1,6 +1,6 @@
 const init_state = {
   id: 0,
-  username: "Doraemon",
+  username: "",
 };
 
 export default (state = init_state, action) => {

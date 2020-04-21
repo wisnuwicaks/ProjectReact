@@ -3,6 +3,13 @@ import { Link, Redirect } from "react-router-dom";
 import Axios from 'axios'
 import {API_URL} from '../../constans/API'
 import swal from "sweetalert";
+import { connect } from "react-redux";
+import {
+  todoInputHandler,
+  usernameInputHandler,
+  addTodoHandler,
+} from "../../redux/actions";
+
 class LoginScreen extends React.Component{
     // state = {
     //     isLoggedIn: false,
@@ -105,7 +112,8 @@ class LoginScreen extends React.Component{
 
         
           if(isLoggedIn){
-            this.props.callback(currentUsername)
+            // this.props.callback(currentUsername)
+            this.props.onChangeUsername(username)
             return <Redirect to={`/profile/${this.state.loginProfile.id}`}/>
 
           }
@@ -147,4 +155,19 @@ class LoginScreen extends React.Component{
     }
 }
 
-export default LoginScreen 
+// export default LoginScreen 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+// Supaya action bisa diakses component lewat props
+// dan action bisa berhubungan dengan reducer
+const mapDispatchToProps = {
+  onChangeTodo: todoInputHandler,
+  onChangeUsername: usernameInputHandler,
+  onAddTodo: addTodoHandler,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
