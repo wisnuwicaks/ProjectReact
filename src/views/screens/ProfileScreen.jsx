@@ -1,6 +1,14 @@
 import React from "react";
 import Axios from 'axios'
 import {API_URL} from '../../constans/API'
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {
+  todoInputHandler,
+  usernameInputHandler,
+  addTodoHandler,
+  idInputHandler,
+} from "../../redux/actions";
 
 class ProfileScreen extends React.Component {
 
@@ -88,6 +96,10 @@ class ProfileScreen extends React.Component {
   //     console.log(err)
   //   })
   // }
+  ubahStateGlobal = () =>{
+    this.props.onChangeUsername('No Active User')
+    this.props.onChangeId(0)
+   }
   render() {
     // alert('ini render')
     // const { currentUser} = this.state
@@ -124,7 +136,7 @@ class ProfileScreen extends React.Component {
     // }
     
 
-
+   
     const { id,username,role,fullName} = this.state
     if(id >0){
       return (
@@ -135,6 +147,9 @@ class ProfileScreen extends React.Component {
           <h2>Welcome, {username} </h2>
           <h2>Full Name : {fullName}</h2>
           <h2>Role : {role}</h2>
+          <Link to="/LoginScreen"><input type="button" className="btn btn-primary" value="Logout" 
+          onClick={this.ubahStateGlobal}
+          /></Link>
           </div>
         </center>
         </div>
@@ -162,4 +177,20 @@ class ProfileScreen extends React.Component {
   }
 }
 
-export default ProfileScreen;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    id :state.user,
+  };
+};
+
+// Supaya action bisa diakses component lewat props
+// dan action bisa berhubungan dengan reducer
+const mapDispatchToProps = {
+  onChangeTodo: todoInputHandler,
+  onChangeUsername: usernameInputHandler,
+  onChangeId: idInputHandler,
+  onAddTodo: addTodoHandler,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
