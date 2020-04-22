@@ -83,6 +83,14 @@ import React, { Component } from "react";
 import Axios from "axios";
 import {API_URL} from '../../constans/API'
 import { Button, Spinner } from "reactstrap";
+import { connect } from "react-redux";
+import {
+  todoInputHandler,
+  usernameInputHandler,
+  addTodoHandler,
+  loginHandler,
+  registerHandler
+} from "../../redux/actions";
 
 class RegisterScreen extends Component {
   state = {
@@ -120,6 +128,7 @@ class RegisterScreen extends Component {
     };
 
     this.setState({ isLoading: true });
+    if (repPassword == password) {
     setTimeout(() => {
       Axios.get(`${API_URL}/users`, {
         params: {
@@ -128,17 +137,21 @@ class RegisterScreen extends Component {
       })
         .then((res) => {
           if (res.data.length == 0) {
+            this.props.onRegister(newUser)
+            this.setState({ isLoading: false, username:'',password:'',role:'',fullName:'' });
             // Username belum terpakai
             // POST request here
-            Axios.post(`${API_URL}/users`, newUser)
-              .then((res) => {
-                alert("Akun anda telah terdaftar!");
-                this.setState({ isLoading: false });
-              })
-              .catch((err) => {
-                alert("Terjadi kesalahan di server, mon map");
-                this.setState({ isLoading: false });
-              });
+            // Axios.post(`${API_URL}/users`, newUser)
+            //   .then((res) => {
+            //     alert("Akun anda telah terdaftar!");
+            //     this.setState({ isLoading: false });
+            //   })
+            //   .catch((err) => {
+            //     alert("Terjadi kesalahan di server, mon map");
+            //     this.setState({ isLoading: false });
+            //   });
+
+
           } else {
             // Username sudah terpakai
             // alert here
@@ -151,6 +164,10 @@ class RegisterScreen extends Component {
           this.setState({ isLoading: false });
         });
     }, 1500);
+    }
+    else{
+      alert("password anda tidak sama")
+    }
   };
 
 
@@ -184,14 +201,6 @@ class RegisterScreen extends Component {
                 placeholder="Full Name"
                 onChange={(e) => this.inputHandler(e, "fullName")}
               />
-
-              <input
-                value={role}
-                className="form-control mt-2"
-                type="text"
-                placeholder="Role"
-                onChange={(e) => this.inputHandler(e, "role")}
-              />
               <input
                 value={password}
                 className="form-control mt-2"
@@ -221,4 +230,21 @@ class RegisterScreen extends Component {
   }
 }
 
-export default RegisterScreen;
+const mapStateToProps = (state) => {
+  return {
+    todo: state.haha,
+    user: state.user,
+  };
+};
+
+// Supaya action bisa diakses component lewat props
+// dan action bisa berhubungan dengan reducer
+const mapDispatchToProps = {
+  onChangeTodo: todoInputHandler,
+  onChangeUsername: usernameInputHandler,
+  onAddTodo: addTodoHandler,
+  onLogin : loginHandler,
+  onRegister : registerHandler,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen);

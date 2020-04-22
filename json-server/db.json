@@ -36,6 +36,20 @@
       "fullName": "Wisnu Wicaksono",
       "role": "creator",
       "id": 5
+    },
+    {
+      "username": "wwwww",
+      "fullName": "wwwww",
+      "password": "wwwww",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "username": "eeeee",
+      "fullName": "eeeee",
+      "password": "eeeee",
+      "role": "user",
+      "id": 7
     }
   ]
 }

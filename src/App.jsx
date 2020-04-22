@@ -5,7 +5,7 @@ import NewScreen from "./views/screens/NewScreen";
 import TableProduct from "./views/components/TableProduct";
 import CounterScreen from "./views/screens/CounterScreen";
 import ProductCard from "./views/components/ProductCard";
-
+import Cookie from 'universal-cookie'
 import "./App.css";
 import "./bootstrap.css";
 
@@ -18,15 +18,19 @@ import Navbar from "./views/components/Navbar";
 import ProfileScreen from "./views/screens/ProfileScreen";
 import LoginScreen from './views/screens/LoginScreen';
 import RegisterScreen from './views/screens/RegisterScreen';
+import TodoReduxScreen from "./views/screens/TodoReduxScreen";
 
-function App() {
+
+const cookieObject = new Cookie();
+class App extends React.Component {
   // State
-  const [UserActive,setUserActive] = useState('No Active User')
+  // const [UserActive,setUserActive] = useState('No Active User')
 
 
-  const parentCallBack = (param) => {
-    setUserActive(param)
-  }
+  // parentCallBack = (param) => {
+  //   setUserActive(param)
+  // }
+  render(){
   // alert(UserActive)
   return (
     // <div className="App">
@@ -39,7 +43,8 @@ function App() {
     <>
       {/* <LifecycleScreen /> */}
     
-      <Navbar logedIn={UserActive}/>
+      {/* <Navbar logedIn={UserActive}/> */}
+      <Navbar/>
       <Switch>
         {/* <Route exact path="/" component={HomeScreen} /> */}
         
@@ -49,6 +54,7 @@ function App() {
         {/* <Route exact path="/LoginScreen" component={LoginScreen} /> */}
         <Route exact path="/profile/:userId" component={ProfileScreen} />
         <Route exact path="/LoginScreen" component={LoginScreen} />
+        <Route exact path="/todo" component={TodoReduxScreen} />
         {/* <Route render={(props) => <LoginScreen {...props} callback = {parentCallBack} />}/> */}
         
      
@@ -56,6 +62,7 @@ function App() {
       </Switch>
     </>
   );
+  }
 }
 
 export default withRouter(App);

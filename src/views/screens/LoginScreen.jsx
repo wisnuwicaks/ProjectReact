@@ -9,6 +9,7 @@ import {
   usernameInputHandler,
   addTodoHandler,
   idInputHandler,
+  loginHandler,
 } from "../../redux/actions";
 
 class LoginScreen extends React.Component{
@@ -80,25 +81,31 @@ class LoginScreen extends React.Component{
   
     loginHandler = () => {
       const { username, password } = this.state;
+      const userData = {
+        username,
+        password,
+      };
+
+      this.props.onLogin(userData);
   
-      Axios.get(`${API_URL}/users`, {
-        params: {
-          username,
-          password,
-        },
-      })
-        .then((res) => {
-          // Login sukses
-          if (res.data.length > 0) {
-            swal("Success!", "Berhasil berhasil hore", "success");
-            this.setState({ isLoggedIn: true, loginProfile: res.data[0] });
-          } else {
-            swal("Error!", "Username atau password salah", "error");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // Axios.get(`${API_URL}/users`, {
+      //   params: {
+      //     username,
+      //     password,
+      //   },
+      // })
+      //   .then((res) => {
+      //     // Login sukses
+      //     if (res.data.length > 0) {
+      //       swal("Success!", "Berhasil berhasil hore", "success");
+      //       this.setState({ isLoggedIn: true, loginProfile: res.data[0] });
+      //     } else {
+      //       swal("Error!", "Username atau password salah", "error");
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     };
   
     render(){
@@ -112,11 +119,13 @@ class LoginScreen extends React.Component{
           } = this.state;
 
         
-          if(isLoggedIn){
+          if(this.props.user.id){
             // this.props.callback(currentUsername)
-            this.props.onChangeUsername(username)
-            this.props.onChangeId(this.state.loginProfile.id)
-            return <Redirect to={`/profile/${this.state.loginProfile.id}`}/>
+              
+            // this.props.onChangeUsername(username)
+            // this.props.onChangeId(this.state.loginProfile.id)
+   
+            return <Redirect to={`/profile/${this.props.user.id}`}/>
 
           }
         
@@ -172,6 +181,7 @@ const mapDispatchToProps = {
   onChangeUsername: usernameInputHandler,
   onChangeId: idInputHandler,
   onAddTodo: addTodoHandler,
+  onLogin : loginHandler,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
