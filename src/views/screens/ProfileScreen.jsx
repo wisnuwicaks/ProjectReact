@@ -138,13 +138,13 @@ class ProfileScreen extends React.Component {
 
    
     const { id,username,role,fullName} = this.state
-    if(id >0){
+    if(this.props.user.id >0){
       return (
         <div className="background-img1 size-body">
         <center className="container p-5">
           <div className="card p-2 card-opacity border-hitam" >
           <h1>Profile</h1>
-          <h2>Welcome, {username} </h2>
+          <h2>Welcome, {this.props.user.username} </h2>
           <h2>Full Name : {fullName}</h2>
           <h2>Role : {role}</h2>
           <Link to="/LoginScreen"><input type="button" className="btn btn-primary" value="Logout" 

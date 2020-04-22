@@ -28,7 +28,7 @@ const mapStateToProps = (state) => {
     // Field dlm object ini bisa diakses lewat this.props.namaField
     
     user: state.user,
-    id :state.user
+  
   };
 };
 
