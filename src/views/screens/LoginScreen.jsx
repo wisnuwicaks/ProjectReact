@@ -4,6 +4,7 @@ import Axios from 'axios'
 import {API_URL} from '../../constans/API'
 import swal from "sweetalert";
 import { connect } from "react-redux";
+import Cookie from 'universal-cookie'
 import {
   todoInputHandler,
   usernameInputHandler,
@@ -12,6 +13,7 @@ import {
   loginHandler,
 } from "../../redux/actions";
 
+const cookieObject = new Cookie()
 class LoginScreen extends React.Component{
     // state = {
     //     isLoggedIn: false,
@@ -80,6 +82,7 @@ class LoginScreen extends React.Component{
     };
   
     loginHandler = () => {
+     
       const { username, password } = this.state;
       const userData = {
         username,
@@ -107,7 +110,15 @@ class LoginScreen extends React.Component{
       //     console.log(err);
       //   });
     };
-  
+    
+    componentDidUpdate(){
+    
+      if(this.props.user.id){
+        alert("Success Login")
+        cookieObject.set("authData",JSON.stringify(this.props.user))
+        console.log(this.props.user)
+      }
+    }
     render(){
       
         const {
@@ -126,6 +137,7 @@ class LoginScreen extends React.Component{
             // this.props.onChangeId(this.state.loginProfile.id)
    
             return <Redirect to={`/profile/${this.props.user.id}`}/>
+            // return <Redirect to="/LoginScreen"/>
 
           }
         

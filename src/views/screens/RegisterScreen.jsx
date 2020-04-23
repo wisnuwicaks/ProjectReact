@@ -186,7 +186,7 @@ class RegisterScreen extends Component {
          
           <center className="p-5">
             <div className="card p-5 card-opacity border-hitam">
-            <h4>Register </h4>
+            <h4>Register</h4>
               <input
                 value={username}
                 className="form-control mt-2"

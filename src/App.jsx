@@ -6,6 +6,7 @@ import TableProduct from "./views/components/TableProduct";
 import CounterScreen from "./views/screens/CounterScreen";
 import ProductCard from "./views/components/ProductCard";
 import Cookie from 'universal-cookie'
+import {connect} from 'react-redux'
 import "./App.css";
 import "./bootstrap.css";
 
@@ -19,10 +20,20 @@ import ProfileScreen from "./views/screens/ProfileScreen";
 import LoginScreen from './views/screens/LoginScreen';
 import RegisterScreen from './views/screens/RegisterScreen';
 import TodoReduxScreen from "./views/screens/TodoReduxScreen";
-
+import {userKeepLogin} from './redux/actions'
 
 const cookieObject = new Cookie();
+
 class App extends React.Component {
+
+  componentDidMount(){
+    let cookieResult = cookieObject.get("authData")
+    // console.log('halo :' +cookieResult.id)
+    if(cookieResult){
+    console.log(cookieResult)
+    this.props.userKeepLogin(cookieResult)
+    }
+  }
   // State
   // const [UserActive,setUserActive] = useState('No Active User')
 
@@ -64,5 +75,14 @@ class App extends React.Component {
   );
   }
 }
+const mapStateToProps = (state) =>{
+  return{
+    user :state.user
+  }
+}
 
-export default withRouter(App);
+const mapDispatchToProps = {
+  userKeepLogin
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(App));
